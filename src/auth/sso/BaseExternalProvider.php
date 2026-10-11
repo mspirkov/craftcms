@@ -323,7 +323,7 @@ abstract class BaseExternalProvider extends BaseProvider
         $event = new SsoEvent([
             'user' => $user,
             'provider' => $this,
-            'sender' => $data,
+            'sender' => $data, // @phpstan-ignore mspirkovYii2Rules.baseObjectInstantiationValidation (Kept for BC: listeners may rely on $event->sender being the data array)
         ]);
 
         $this->trigger(Sso::EVENT_POPULATE_USER, $event);

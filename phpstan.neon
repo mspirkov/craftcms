@@ -1,9 +1,31 @@
+includes:
+    - vendor/mspirkov/yii2-phpstan-rules/rules.neon
+
 parameters:
     level: 5
     paths:
         - bootstrap
         - src
         - tests
+    mspirkovYii2Rules:
+        enableAllRules: false
+        enableValidationRules: true
+        aliases:
+            '@app': %currentWorkingDirectory%/src
+        baseObjectConfigValidation:
+            skippedClasses:
+                # The constructor assigns the config keys itself
+                -
+                    class: craft\models\FsListing
+                # The constructor handles the "template" and "variables" keys itself
+                -
+                    class: craft\web\UrlRule
+                    attributes:
+                        - template
+                        - variables
+                # Tests pass invalid types on purpose to check type coercion
+                -
+                    class: craft\test\mockclasses\models\ExampleModel
     excludePaths:
         - src/config/mimeTypes.php
         - src/image/*

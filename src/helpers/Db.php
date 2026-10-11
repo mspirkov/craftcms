@@ -1804,7 +1804,7 @@ class Db
         /** @var BatchQueryResult $result */
         $result = Craft::createObject([
             'class' => BatchQueryResult::class,
-            'query' => $query,
+            'query' => $query, // @phpstan-ignore mspirkovYii2Rules.yiiCreateObjectValidation (Kept for BC: Db::batch() and Db::each() accept QueryInterface, but BatchQueryResult expects Query)
             'batchSize' => $batchSize,
             'db' => $db,
             'each' => $each,

@@ -133,7 +133,7 @@ class Asset extends ElementMutationResolver
             ]));
         }
 
-        $asset = $this->saveElement($asset);
+        $this->saveElement($asset);
 
         if ($triggerReplaceEvents) {
             $assetService->trigger(Assets::EVENT_AFTER_REPLACE_ASSET, new ReplaceAssetEvent([
